@@ -1,0 +1,247 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //var
+        console.log(a3);
+        var a3=10;
+
+        var a4;
+        console.log(a4);
+        a4=10;
+
+        //let 
+
+        
+        let v=10;
+        console.log(v);
+
+        
+
+       //promise  
+        const count = 10;
+
+let countValue = new Promise(function (resolve, reject) {
+    if (count>6) {
+        resolve("There is a count value.");
+    } else {
+        reject("There is no count value");
+    }
+});
+console.log(countValue);
+
+//promise
+
+function pros(){
+    return new Promise(function(resolve,reject){
+        setTimeout(function(){
+            console.log("Prosmise first");
+            resolve();
+        },3000);
+    });
+}
+pros()
+    .then(function (){
+        console.log("success")
+
+    })
+    .catch(function (err){
+        console.log("err", err)
+    });
+
+//call back
+
+function first(callback){
+    setTimeout(function(){
+        console.log("first");
+        callback();
+     },3000);
+}
+function second(){
+    console.log("second")
+}
+first(second);
+
+//call hell
+
+function first(callback){
+    setTimeout(function(){
+        console.log("first");
+        callback(third);
+    },3000)
+}
+function second(c2){
+    console.log("second");
+    c2();
+}
+function third(){
+    console.log("Third");
+}
+first(second)
+
+//promise chainning
+
+function chain(){
+    return new Promise(function(resolve,reject){
+        setTimeout(function(){
+            console.log("Prosmise first");
+            reject();
+        },3000);
+    });
+}
+function chainone(){
+    return new Promise(function(resolve,reject){
+        setTimeout(function(){
+            console.log("Its a chainone");
+        },3000);
+    });
+}
+function chaintwo(){
+    return new Promise(function(resolve,reject){
+        setTimeout(function(){
+            console.log("Its a chaintwo");
+        },3000);
+    });
+}
+chain()
+.then(function (res) {
+   // console.log("success",res);
+    return chainone();
+})
+.then(function (res){
+   // console.log("success",res);
+    return chaintwo();
+})
+.then(function (res){
+   // console.log("success",res);
+})
+.catch(function (err){
+    console.log("err",err);
+});
+
+//asychronous await
+
+async function asywai(){
+    return new Promise(function(resolve,reject){
+        setTimeout(function(){
+            console.log("async first");
+            resolve("successed");
+        },3000);
+    });
+}
+//asywai();
+
+async function awaitFun(){
+    const output=asywai();
+    console.log(output)
+}
+awaitFun();
+
+asywai()
+async function awaitFun(){
+    asywai() .then (res1 => increamentOne(res1))
+        .then(res1 => increamnetOne(res1))
+        .then(res1 => increamentOne(res1))
+        .then(console.log)
+}
+// async function increamentOne(res1){
+//     return new Promise (resolve) => setTimeOut (() =>
+//         resolve(res1+1)
+// },1000)
+
+    
+//}
+
+//promise all
+
+const p1= new Promise ((resolve,reject) => {
+    resolve(10);
+});
+const p2= new Promise ((resolve,reject) => {
+    resolve(20);
+});
+const p3= new Promise ((resolve,reject) => {
+    resolve(30);
+});
+const p4=new Promise((resolve,reject)=>{
+    reject(null)
+});
+const p5=new Promise((resolve,reject)=>{
+    reject("p5")
+})
+Promise.all([p1,p2,p3,p4,p5]).then((values)=>{
+    const total=values.reduce((a,b) =>{
+        return a+b;
+    });
+    console.log(`total  = ${total}`);
+}).catch((value)=>{
+    console.log(`one of the Promise gets rejected value= ${value}`)
+})
+
+//classes 
+
+class student{
+    constructor(name,age,roll,mob){
+        this.cl_name=name;
+        this.cl_age=age;
+        this.cl_roll=roll;
+        this.cl_mob=mob;
+    }
+}
+student1=new student("john",15,1,58964726);
+student2=new student("jo",18,2,25198794) 
+console.log(student2.cl_mob);
+
+
+
+
+//map
+
+var arr=[0,1,2,3];
+var res=arr.map(function(item,index){
+    return item*2;
+
+});
+console.log(res);
+
+//filter
+
+var array=[0,1,2,3,4]
+var res1=array.filter(function(item,index){
+    return item>3
+});
+console.log(res1);
+
+//every
+
+var array1=[0,1,2,3,4]
+var res2=array1.every(function(item,index){
+    return item>7
+});
+console.log(res2);
+
+//some
+
+var array2=[0,1,2,3,4]
+var res3=array2.some(function(item,index){
+    return item>3
+});
+console.log(res3);
+
+//find
+
+var array3=[1,2,3,4]
+var res4=array3.find(function(value,index){
+    return value>3
+});
+console.log(res4)
+
+
+    </script>
+</body>
+</html>
